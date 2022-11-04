@@ -22,6 +22,8 @@ from core.urls import core_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(core_urlpatterns)),
+    
+    re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 if settings.DEBUG:
