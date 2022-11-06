@@ -86,7 +86,7 @@
           <li class="{% if request.path == '/contact/' %} active {% endif %}"><a href="{% url 'contact:contact' %}">Contact Us</a></li>
           <li class="nav-item px-lg-4">
             {% if request.user.is_authenticated %}
-              <span style="color:white" class="text-expanded">{{ request.user.get_full_name }}</span>
+              <a  class="text-expanded">{{ request.user.get_full_name }}</a>
               <a href="{% url 'core:logout' %}" class="nav-link text-uppercase text-expanded">Salir</a>
             {% else %}
               <a href="{% url 'social:begin' 'google-oauth2' %}" class="nav-link text-uppercase text-expanded">Sign in with Google</a>
