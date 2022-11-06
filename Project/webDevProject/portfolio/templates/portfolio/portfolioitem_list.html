@@ -1,0 +1,66 @@
+{% extends "core/base.html"%}
+{% block content %}
+{% load static %}
+    <main id="main">
+
+        <!-- ======= Our Portfolio Section ======= -->
+        <section class="breadcrumbs">
+        <div class="container">
+    
+            <div class="d-flex justify-content-between align-items-center">
+            <h2>Our Portfolio</h2>
+            <ol>
+                <li><a href="{% url 'core:home' %}">Home</a></li>
+                <li>Our Portfolio</li>
+            </ol>
+            </div>
+    
+        </div>
+        </section><!-- End Our Portfolio Section -->
+    
+        <!-- ======= Portfolio Section ======= -->
+        <section class="portfolio">
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul id="portfolio-flters">
+                    <li data-filter="*" class="filter-active">All</li>
+                    {% for category in categories %}
+                        {% comment %} <li data-filter=".filter-app">App</li>
+                        <li data-filter=".filter-card">Card</li>
+                        <li data-filter=".filter-web">Web</li> {% endcomment %}
+                        <li data-filter=".filter-{{category.name}}">{{category.name}}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                </div>
+    
+            <div class="row portfolio-container" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+                {% for item in object_list %}
+                    <div class="col-lg-4 col-md-6 portfolio-wrap {% for category in item.categories.all %} filter-{{category.name}} {% endfor %}" >
+                        <div class="portfolio-item">
+                        {% comment %} {% for image in item.portfolioitem_images.first %} {% endcomment %}
+                        <img src="{{item.portfolioitem_images.first.images.url}}" class="img-fluid" alt="">
+                        {% comment %} {% endfor %} {% endcomment %}
+                        <div class="portfolio-info">
+                            <h3>{{item.title}}</h3>
+                            <div>
+                            <a href="{{item.portfolioitem_images.first.images.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{item.title}}"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                            </div>
+                        </div>
+                        </div>  
+                    </div>
+                {% endfor %}
+    
+            
+    
+            </div>
+    
+        </div>
+        </section><!-- End Portfolio Section -->
+    
+    </main><!-- End #main -->
+
+{% endblock %}

@@ -19,7 +19,7 @@ class Category(models.Model):
 class PortfolioItem(models.Model):
     title= models.CharField(max_length=200, verbose_name="Title")
     #Multiple images
-    #image = models.FileField(blank=True)
+    image = models.FileField(blank=True)
     #Project Information
     subtitle= models.CharField(max_length=200, verbose_name="Subtitle")
     content = RichTextUploadingField(verbose_name="Content")
@@ -41,7 +41,7 @@ class PortfolioItem(models.Model):
         return self.title
     
 class PortfolioItemImage(models.Model):
-    portfolioItem = models.ForeignKey(PortfolioItem, default=None, on_delete=models.CASCADE)
+    portfolioItem = models.ForeignKey(PortfolioItem, default=None, on_delete=models.CASCADE, related_name='portfolioitem_images')
     images = models.FileField(upload_to = "portfolio")
     
     def __str__(self):
