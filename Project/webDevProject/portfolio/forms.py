@@ -10,3 +10,9 @@ PortfolioItemImageInlineFormSet = inlineformset_factory(
     fields = ('images',),
     extra=3,
     )
+
+PortfolioItemImageInlineNoExtraFormSet = inlineformset_factory(
+    PortfolioItem,
+    PortfolioItemImage,
+    fields = ('images',),
+    )

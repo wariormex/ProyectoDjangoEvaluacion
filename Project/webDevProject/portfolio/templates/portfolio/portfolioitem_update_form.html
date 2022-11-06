@@ -12,13 +12,14 @@
         <ol>
             <li><a href="{% url 'core:home' %}">Home</a></li>
             <li><a href="{% url 'portfolio:portfolioitem_list' %}">Our Portfolio</a></li>
-            <li>Create New Item</li>
+            <li><a href="{% url 'portfolio:portfolioitem_detail' object.id %}">{{object.title}}</a></li>
+            <li>Edit Item</li>
         </ol>
         </div>
 
     </div>
     </section><!-- End Our Portfolio Section -->
 
-{% include 'portfolio/portfolioitem_form.html' with btn_description="'Create Portfolio Item'"%}
+{% include 'portfolio/portfolioitem_form.html' with btn_description="'Update Portfolio Item'"%}
 
 {% endblock %}
