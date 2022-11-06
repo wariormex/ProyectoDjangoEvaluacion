@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'social_django',
     'core',
+    'portfolio',
     'contact',
 ]
 
