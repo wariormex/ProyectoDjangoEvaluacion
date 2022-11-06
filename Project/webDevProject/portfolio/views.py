@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.decorators import method_decorator
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -21,7 +22,7 @@ class PortfolioItemListView(ListView):
 class PortfolioItemDetailView(DetailView):
     model = PortfolioItem
     #template_name = "portfolioitem_detail.html"
-    
+@method_decorator(staff_member_required, name='dispatch')
 class PortfolioItemCreateView(CreateView):
     model = PortfolioItem
     #fields = "__all__"
@@ -52,7 +53,7 @@ class PortfolioItemCreateView(CreateView):
     
     #success_url = reverse_lazy('portfolio:portfolioitem_list')
     
-    
+@method_decorator(staff_member_required, name='dispatch')
 class PortfolioItemUpdateView(UpdateView):
     model = PortfolioItem
     fields = ['title', 'subtitle', 'content','categories','client', 'published','url']
@@ -85,7 +86,8 @@ class PortfolioItemUpdateView(UpdateView):
         return reverse_lazy('portfolio:portfolioitem_list')
     
     #success_url = reverse_lazy('portfolio:portfolioitem_list')
-   
+
+@method_decorator(staff_member_required, name='dispatch') 
 class PortfolioItemDeleteView(DeleteView):
     model = PortfolioItem
     template_name_suffix = '_delete_form'
