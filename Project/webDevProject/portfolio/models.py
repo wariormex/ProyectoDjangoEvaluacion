@@ -19,7 +19,7 @@ class Category(models.Model):
 class PortfolioItem(models.Model):
     title= models.CharField(max_length=200, verbose_name="Title")
     #Multiple images
-    image = models.FileField(blank=True)
+    #image = models.FileField(blank=True)
     #Project Information
     subtitle= models.CharField(max_length=200, verbose_name="Subtitle")
     content = RichTextUploadingField(verbose_name="Content")

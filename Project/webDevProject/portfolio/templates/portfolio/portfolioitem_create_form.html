@@ -1,0 +1,8 @@
+{% extends "core/base.html"%}
+{% block content %}
+{% load static %}
+{% include 'portfolio/menu_portfolio.html'%}
+
+{% include 'portfolio/portfolioitem_form.html' with btn_description="'Create Portfolio Item'"%}
+
+{% endblock %}
