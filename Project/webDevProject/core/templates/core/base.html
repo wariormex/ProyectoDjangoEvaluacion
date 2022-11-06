@@ -30,6 +30,10 @@
   <!-- Template Main CSS File -->
   <link href="{% static 'core/css/style.css' %}" rel="stylesheet">
 
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+  </script>
+
   <style>
     {% block contentStyle%}{% endblock %}
   </style>
@@ -79,7 +83,15 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li class="{% if request.path == '/contact/' %} active {% endif %}"><a href="{% url 'contact:contact' %}">Contact Us</a></li>
+          <li class="nav-item px-lg-4">
+            {% if request.user.is_authenticated %}
+              <span style="color:white" class="text-expanded">{{ request.user.get_full_name }}</span>
+              <a href="{% url 'core:logout' %}" class="nav-link text-uppercase text-expanded">Salir</a>
+            {% else %}
+              <a href="{% url 'social:begin' 'google-oauth2' %}" class="nav-link text-uppercase text-expanded">Sign in with Google</a>
+            {% endif %}
+          </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
