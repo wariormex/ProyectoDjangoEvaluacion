@@ -18,13 +18,16 @@ from django.urls import path, include, re_path
 from core import views
 from . import settings
 from core.urls import core_urlpatterns
+from contact.urls import contact_urlpatterns
 from portfolio.urls import portfolio_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(core_urlpatterns)),
     path('portfolio/', include(portfolio_urlpatterns)),
-    
+    path('social-auth/', include('social_django.urls', namespace="social")),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('contact/', include(contact_urlpatterns)),
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
