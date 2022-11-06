@@ -18,10 +18,14 @@ from django.urls import path, include, re_path
 from core import views
 from . import settings
 from core.urls import core_urlpatterns
+from portfolio.urls import portfolio_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(core_urlpatterns)),
+    path('portfolio/', include(portfolio_urlpatterns)),
+    
+    re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 if settings.DEBUG:

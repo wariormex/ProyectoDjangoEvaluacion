@@ -1,0 +1,11 @@
+{% if request.user.is_staff %}
+    <div class="container ">
+        <span class="navbar-brand" href="#"><i><h3>Portfolio Admin Menu</h3></i></span>
+            <ul class="nav nav-pills nav-fill mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" 
+                        href="{% url 'portfolio:create' %}"><i>Create New Item</i></a>
+                </li>
+            </ul>
+    </div>
+{% endif %}
