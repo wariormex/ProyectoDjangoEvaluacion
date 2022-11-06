@@ -47,7 +47,7 @@
                             <h3>{{item.title}}</h3>
                             <div>
                             <a href="{{item.portfolioitem_images.first.images.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{item.title}}"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                            <a href="{% url 'portfolio:portfolioitem_detail' item.id %}" title="Portfolio Details"><i class="bx bx-link"></i></a>
                             </div>
                         </div>
                         </div>  

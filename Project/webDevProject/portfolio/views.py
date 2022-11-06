@@ -17,4 +17,8 @@ class PortfolioItemListView(ListView):
         context['categories'] = Category.objects.all()
         return context
 
+class PortfolioItemDetailView(DetailView):
+    model = PortfolioItem
+    #template_name = "portfolioitem_detail.html"
+    
 
