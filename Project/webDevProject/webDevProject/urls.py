@@ -20,10 +20,12 @@ from . import settings
 from core.urls import core_urlpatterns
 from contact.urls import contact_urlpatterns
 from portfolio.urls import portfolio_urlpatterns
+from services.urls import services_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(core_urlpatterns)),
+    path('services/', include(services_urlpatterns)),
     path('portfolio/', include(portfolio_urlpatterns)),
     path('social-auth/', include('social_django.urls', namespace="social")),
     path('accounts/', include('django.contrib.auth.urls')),

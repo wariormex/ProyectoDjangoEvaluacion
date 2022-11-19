@@ -62,7 +62,7 @@
         <ul>
           <li><a class="{% if request.path == '/'%}active{% endif%}" href="{% url 'core:home' %}">Home</a></li>
           <li><a class = "{% if request.path == '/about/'%}active{% endif%}" href="{% url 'core:about' %}">About</a></li>
-          <li><a href="services.html">Services</a></li>
+          <li><a class = "{% if request.path == '/services/'%}active{% endif%}" href="{% url 'services:services' %}">Services</a></li>
           <li><a class = "{% if request.path == '/portfolio/'%}active{% endif%}" href="{% url 'portfolio:portfolioitem_list' %}">Portfolio</a></li>
           <li><a href="team.html">Team</a></li>
           <li><a href="blog.html">Blog</a></li>
