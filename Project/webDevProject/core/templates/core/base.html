@@ -5,11 +5,19 @@
 
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
 
   <title>Moderna Bootstrap Template - Index</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+
+  <!-- Bootstrap CSS v5.0.2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <!-- font awesome CSS v5.10.0 -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
   <!-- Favicons -->
   <link href="{% static 'core/img/favicon.png' %}" rel="icon">
@@ -64,25 +72,6 @@
           <li><a class = "{% if request.path == '/about/'%}active{% endif%}" href="{% url 'core:about' %}">About</a></li>
           <li><a class = "{% if request.path == '/services/'%}active{% endif%}" href="{% url 'services:services' %}">Services</a></li>
           <li><a class = "{% if request.path == '/portfolio/'%}active{% endif%}" href="{% url 'portfolio:portfolioitem_list' %}">Portfolio</a></li>
-          <li><a href="team.html">Team</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>
           <li class="{% if request.path == '/contact/' %} active {% endif %}"><a href="{% url 'contact:contact' %}">Contact Us</a></li>
             {% if request.user.is_authenticated %}
               <li><a  class="text-expanded">{{ request.user.get_full_name }}</a></li>
@@ -90,8 +79,9 @@
             {% else %}
               <li><a href="{% url 'social:begin' 'google-oauth2' %}" class="nav-link text-uppercase text-expanded">Sign in with Google</a></li>
             {% endif %}
+            <li><a onclick="verPedido()" href="#"><i class="fas fa-shopping-cart"><span id="cart-badge" class="badge badge-danger">0</span></i></a></li>
         </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
+        <i id="nabar-toggler" onclick="cartBadgeTextToggle()" class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
     </div>
@@ -203,6 +193,21 @@
   <script src="{% static 'core/js/main.js' %}"></script>
 
   <!-- JS Block -->
+  <script>
+    function cartBadgeTextToggle(){
+      if($("#navbar").hasClass("navbar-mobile")){
+        console.log("Has entered if for dekstop")
+        $('#cart-badge').addClass("text-light")
+        $('#cart-badge').removeClass("text-dark")
+      }else{
+        console.log("Has entered if for mobile")
+        $('#cart-badge').addClass("text-dark")
+        $('#cart-badge').removeClass("text-light")
+      }
+    }
+      
+    
+  </script>
   {% block contentJS %} {% endblock %}
 
 </body>

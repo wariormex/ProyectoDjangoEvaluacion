@@ -169,7 +169,9 @@
               <li><i class="bx bx-check"></i>{{detail.detail}}</li>
               {% endfor %}
             </ul>
-            <a href="#" class="get-started-btn">Add to Cart</a>
+            <a href="#" class="get-started-btn"
+              onclick="agregaCarrito({{service.id}});"
+            >Add to Cart</a>
           </div>
           {% endfor %}
         </div>
