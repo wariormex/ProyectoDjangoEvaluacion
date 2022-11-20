@@ -87,6 +87,11 @@
     </div>
   </header><!-- End Header -->
 
+  <form id="formaCarrito" action="{% url 'services:detalle_pedido' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="datos_pedido" id="datos_pedido"/>
+  </form>
+
   {% block content%} {% endblock %}
 
   <!-- ======= Footer ======= -->
@@ -205,6 +210,51 @@
         $('#cart-badge').removeClass("text-light")
       }
     }
+
+      // Get the current year for the copyright
+      $("#year").text(new Date().getFullYear());   
+    
+      //Coloca la variablke cart en el localStorage
+      if (localStorage.getItem("cart") == null){
+        localStorage.clear();
+        var cart = {};
+      }else{
+        cart = JSON.parse(localStorage.getItem('cart'));
+        show_badge_cart();
+      }
+  
+      function agregaCarrito(id) {
+        if (cart[id] != undefined){
+          cart[id] += 1;
+        }else{
+          cart[id] = 1;
+        }
+        localStorage.setItem('cart',JSON.stringify(cart));
+        show_badge_cart();
+      }
+  
+      function show_badge_cart(){
+        var totalItems = 0;
+        if (localStorage.getItem('cart') != null){
+          cart = JSON.parse(localStorage.getItem('cart'));
+          for(var x in cart){
+            totalItems += parseInt(cart[x]);
+          }
+        }
+        $('#cart-badge').text(totalItems.toString());
+      }
+  
+      function verPedido(){
+        if (localStorage.getItem('cart') != null){
+          cart = JSON.parse(localStorage.getItem('cart'));
+          valores_pedido = "";
+          for(var x in cart){
+            valores_pedido += x + "-" + cart[x] + "|";
+          }
+          $('#datos_pedido').val(valores_pedido);
+          $('#formaCarrito').submit();
+        }
+      }
       
     
   </script>
