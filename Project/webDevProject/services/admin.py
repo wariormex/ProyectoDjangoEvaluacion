@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Service, ServiceDetail
+from .models import Service, ServiceDetail, Pedido
 
 class CategoryAdmin(admin.ModelAdmin):
     readonly_fields = ('created','updated')
@@ -23,5 +23,10 @@ class ServiceAdmin(admin.ModelAdmin):
   
 class ServiceDetailAdmin(admin.ModelAdmin):
     pass
+
+class PedidoAdmin(admin.ModelAdmin):
+    readonly_fields = ('date',)
+    list_display = ('name', 'total')
       
 admin.site.register(Service, ServiceAdmin)
+admin.site.register(Pedido, PedidoAdmin)

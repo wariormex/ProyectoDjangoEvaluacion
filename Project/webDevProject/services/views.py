@@ -1,11 +1,33 @@
 from django.shortcuts import render
+from django.views.generic.base import TemplateView
+from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 from services.models import Service
+from .forms import PedidoForm
+from django.urls import reverse_lazy
 
 class ServicesPageView(ListView):
     model = Service
     paginate_by = 3
     template_name = 'services/services.html'
+    
+class ServiceCreatePedido(CreateView):
+    form_class = PedidoForm
+    template_name = 'services/pedido_cliente.html'
+    success_url = reverse_lazy('services:success_pedido')
+    
+    def form_valid(self, form):
+        pedido_nuevo = form.save(commit=False)
+        pedido_nuevo.save()
+        return super().form_valid(form)
+    
+    def get_form_kwargs(self):
+        kwargs = super(ServiceCreatePedido, self).get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
+    
+class PedidoSuccess(TemplateView):
+    template_name = 'services/pedido_success.html'
 
 def _creaDiccionario(datos_pedido):
     diccionario = {}

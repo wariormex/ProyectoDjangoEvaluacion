@@ -1,0 +1,58 @@
+{% extends "core/base.html"%}
+{% block contentStyle%}
+    .fullscreen {
+        width: 100%;
+        height: 50vh;
+    }
+{% endblock %}
+{% block content %}
+{% load static %}
+
+<main id="main">
+    <div class="container fullscreen">
+        <br>
+        <br>
+        <div class="row mt-2">
+            <div class="col-md-9 mx-auto mb-1">
+                <table class="table">
+                    <thead class="text-dark">
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-dark">
+                        {% for producto in pedido %}
+                        <tr>
+                            <td>{{producto.titulo}}</td>
+                            <td style='text-aling:right;'>{{producto.cantidad}}</td>
+                            <td style='text-aling:right;'>{{producto.precio}}</td>
+                            <td style='text-aling:right;'>{{producto.subtotal}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-md-9 mx-auto mb-2">
+                <div class="float-right">
+                    <span class="text-dark">Total = {{total}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-0">
+            <div class="col-md-9 mx-auto mb-1">
+                <div id="button_submit" class="float-right">
+                    <a href="{% url 'services:create_pedido' %}" class="btn text-dark form-btn mx-1">
+                        <span class="spinner-border spinner-border-sm d-none"></span>
+                        <i class="fas fa-paper-plane fa-fw"></i> Confirm Order
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+<main/>
+{% endblock %}

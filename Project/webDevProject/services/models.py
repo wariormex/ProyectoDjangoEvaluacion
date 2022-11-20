@@ -30,3 +30,19 @@ class ServiceDetail(models.Model):
     
     def __str__(self):
         return self.service.title
+    
+class Pedido(models.Model):
+    date = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creacion")
+    email = models.EmailField(verbose_name="Email")
+    name = models.CharField(max_length=100, verbose_name="Nombre")
+    address = models.CharField(max_length=200, verbose_name="Calle y Numero")
+    colony = models.CharField(max_length=200, verbose_name="Colonia")
+    total = models.DecimalField(verbose_name="Total", max_digits=8, decimal_places=2)
+    
+    class Meta:
+        verbose_name = "Pedido"
+        verbose_name_plural = "Pedidos"
+        ordering = ["-date"]
+    
+    def __str__(self):
+        return str(self.id)
