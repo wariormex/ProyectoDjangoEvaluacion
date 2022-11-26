@@ -73,13 +73,31 @@
           <li><a class = "{% if request.path == '/services/'%}active{% endif%}" href="{% url 'services:services' %}">Services</a></li>
           <li><a class = "{% if request.path == '/portfolio/'%}active{% endif%}" href="{% url 'portfolio:portfolioitem_list' %}">Portfolio</a></li>
           <li class="{% if request.path == '/contact/' %} active {% endif %}"><a href="{% url 'contact:contact' %}">Contact Us</a></li>
+          {% if not request.user.is_authenticated %}
+          <li>
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'login' %}">Login</a>
+          </li>
+          <li>
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'signup' %}">Register</a>
+          </li>
+          {% else %}
+          {% comment %} <li><a  class="text-expanded">{{ request.user.username }}</a></li> {% endcomment %}
+          <li>
+            <a  class="text-expanded">{{ request.user.username }}</a>
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'logout' %}">Logout</a>
+          </li>
+          {% endif %}
             {% if request.user.is_authenticated %}
-              <li><a  class="text-expanded">{{ request.user.get_full_name }}</a></li>
-              <li><a href="{% url 'core:logout' %}" class="nav-link text-uppercase text-expanded">Salir</a></li>
+              {% comment %} <li><a  class="text-expanded">{{ request.user.get_full_name }}</a></li>
+              <li><a href="{% url 'core:logout' %}" class="nav-link text-uppercase text-expanded">Salir</a></li> {% endcomment %}
             {% else %}
-              <li><a href="{% url 'social:begin' 'google-oauth2' %}" class="nav-link text-uppercase text-expanded">Sign in with Google</a></li>
+              {% comment %} <li><a  class="text-expanded">{{ request.user.get_full_name }}</a></li> {% endcomment %}
+              <li>
+                {% comment %} <a  class="text-expanded">{{ request.user.get_full_name }}</a> {% endcomment %}
+                <a href="{% url 'social:begin' 'google-oauth2' %}" class="nav-link text-uppercase text-expanded">Sign in with Google</a>
+              </li>
             {% endif %}
-            <li><a onclick="verPedido()" href="#"><i class="fas fa-shopping-cart"><span id="cart-badge" class="badge badge-danger">0</span></i></a></li>
+          <li><a onclick="verPedido()" href="#"><i class="fas fa-shopping-cart"><span id="cart-badge" class="badge badge-danger">0</span></i></a></li>
         </ul>
         <i id="nabar-toggler" onclick="cartBadgeTextToggle()" class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

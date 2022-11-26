@@ -30,6 +30,8 @@ urlpatterns = [
     path('social-auth/', include('social_django.urls', namespace="social")),
     path('accounts/', include('django.contrib.auth.urls')),
     path('contact/', include(contact_urlpatterns)),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('registration.urls')),
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
