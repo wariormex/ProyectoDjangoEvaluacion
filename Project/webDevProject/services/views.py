@@ -5,12 +5,15 @@ from django.views.generic.list import ListView
 from services.models import Service
 from .forms import PedidoForm
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 class ServicesPageView(ListView):
     model = Service
     paginate_by = 3
     template_name = 'services/services.html'
-    
+
+@method_decorator(login_required, name='dispatch')
 class ServiceCreatePedido(CreateView):
     form_class = PedidoForm
     template_name = 'services/pedido_cliente.html'
@@ -25,10 +28,12 @@ class ServiceCreatePedido(CreateView):
         kwargs = super(ServiceCreatePedido, self).get_form_kwargs()
         kwargs['request'] = self.request
         return kwargs
-    
+
+@method_decorator(login_required, name='dispatch')    
 class PedidoSuccess(TemplateView):
     template_name = 'services/pedido_success.html'
 
+@method_decorator(login_required, name='dispatch')
 def _creaDiccionario(datos_pedido):
     diccionario = {}
     datos_pedido = datos_pedido[:-1]
@@ -38,6 +43,7 @@ def _creaDiccionario(datos_pedido):
         diccionario[detalle[0]] = int(detalle[1])
     return diccionario
 
+@method_decorator(login_required, name='dispatch')
 def realizar_pedido(request):
     pedido = list()
     if request.method == 'POST':
