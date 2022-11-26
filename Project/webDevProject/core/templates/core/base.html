@@ -82,8 +82,8 @@
           </li>
           {% else %}
           {% comment %} <li><a  class="text-expanded">{{ request.user.username }}</a></li> {% endcomment %}
+          <a  class="text-expanded">{{ request.user.username }}</a>
           <li>
-            <a  class="text-expanded">{{ request.user.username }}</a>
             <a class="nav-link text-uppercase text-expanded" href="{% url 'logout' %}">Logout</a>
           </li>
           {% endif %}
@@ -97,7 +97,8 @@
                 <a href="{% url 'social:begin' 'google-oauth2' %}" class="nav-link text-uppercase text-expanded">Sign in with Google</a>
               </li>
             {% endif %}
-          <li {% if not request.user.is_authenticated %}style="opacity:0.5;pointer-events: none;"{% endif %}><a {% if request.user.is_authenticated %} onclick="verPedido()" {% endif %} href="#"><i class="fas fa-shopping-cart"><span id="cart-badge" class="badge badge-danger">0</span></i></a></li>
+            <li><a onclick="verPedido()" href="#"><i class="fas fa-shopping-cart"><span id="cart-badge" class="badge badge-danger">0</span></i></a></li>
+          {% comment %} <li {% if not request.user.is_authenticated %}style="opacity:0.5;pointer-events: none;"{% endif %}><a {% if request.user.is_authenticated %} onclick="verPedido()" {% endif %} href="#"><i class="fas fa-shopping-cart"><span id="cart-badge" class="badge badge-danger">0</span></i></a></li> {% endcomment %}
         </ul>
         <i id="nabar-toggler" onclick="cartBadgeTextToggle()" class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
