@@ -5,19 +5,43 @@
 {% block extrastyle %}
 
     <style>
-        #header {background:#054458;}
-        #main {background:#212729;}
-        .colMS h1 {color: #f5dd5d; font-weight:bold;}
+        #header {
+            background:#1e4356;
+            color: #9AE2E6;
+        }
+        #main {background:#FAFEFE;}
+        #branding h1 a:link, #branding h1 a:visited {
+            color: #FFFFFF;
+        }
+        .colMS h1 {color: #68a4c4; font-weight:bold;}
         .module h2, .module caption, .inline-group h2 {background:#054458}
         div.breadcrumbs {background:#054458;}
-        a:link, a:visited {color: ##035587;}
+        a:link, a:visited {color: #2F4E5B;}
         #container {background: #F9F9F9;}
-        #content-related {background: #054458;}
-        #content-related .module h2, #content-related .module h3 {color: <div id="00000"></div>;}
-        #content-related .module {background: #054458;}
-        #content-main input[type='submit'] {background:#993e06;}
-        #module-group {background: #BDF5E6}
-        .module h2 {color: #f5dd5d; font-weight:bold;}
+        #content-related {background: #EDF6FA;}
+        #content-related .module {background: #EDF6FA;}
+        #content-related .module h2 {background: #1e4356;}
+        #content-related h3 {color: black}
+        #content-related .actionlist li {color: #A50909}
+        #content-related .module h2 {color: #FFFFFF;}
+        .quiet, a.quiet:link, a.quiet:visited {color: #000000;}
+        #nav-sidebar .current-app .section:link, #nav-sidebar .current-app .section:visited {color: #83DAFF;}
+        :root {
+            --body-bg: #EDF6FA;
+            --darkened-bg: #B5CCD7;
+            --hairline-color: #477A92;
+            --body-fg: #000000;
+            --selected-row: #9AE2E6;
+            --selected-bg: #1e4356;
+        }
+        h1 {color: #000000;}
+        #changelist .paginator {color: #000000 !important;}
+        #nav-filter {background-color: #FFFFFF;}
+        label {color: #000000  !important;}
+        #nav-sidebar .current-app .section:link, #nav-sidebar .current-app .section:visited {color: #B1EBEE;}
+        .inline-related h3 {color: #FFFFFF !important;}
+        thead th a:link, thead th a:visited {color: #FFFFFF;}
+
     </style>
 
 {% endblock %}
