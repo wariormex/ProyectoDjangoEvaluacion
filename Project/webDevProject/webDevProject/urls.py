@@ -43,7 +43,8 @@ if settings.DEBUG:
 
 #Titulos Personalizados para el Admin
 admin.site.site_header = "Moderna"
-admin.site.index_title = "Panel de administración"
+admin.site.index_title = "Administration Panel"
+admin.site.site_title = 'My Site Admin'
 admin.site.title = "Moderna"
 
 
